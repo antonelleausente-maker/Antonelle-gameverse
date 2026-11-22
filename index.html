@@ -1,0 +1,779 @@
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Antonelle's Gaming World</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @font-face {
+            font-family: Minecraft;
+            src: url("Fonts/MinecraftRegular-Bmg3.otf");
+        }
+
+        body {
+            color: white;
+            font-family: Minecraft, sans-serif;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        /* VIDEO BACKGROUND */
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.50);
+            z-index: -1;
+        }
+
+        header {
+            background: #101b30;
+            padding: 25px;
+            border-bottom: 3px solid #087bff;
+        }
+
+        header h1 {
+            color: white;
+            font-size: 35px;
+            text-shadow: 0 0 15px blue;
+        }
+
+        nav {
+            margin-top: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 12px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        nav a:hover {
+            color: white;
+            text-shadow: 0 0 10px blue;
+        }
+
+        .gamer-banner {
+            position: relative;
+            margin: 30px auto;
+            width: 90%;
+            max-width: 1000px;
+            height: 300px;
+            overflow: hidden;
+            border: 3px solid #087bff;
+            border-radius: 15px;
+            box-shadow: 0 0 20px red;
+        }
+
+        .gamer-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.5;
+        }
+
+        .banner-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+        }
+
+        .banner-text h2 {
+            color: white;
+            font-size: 35px;
+            text-shadow: 0 0 15px blue;
+        }
+
+        .banner-text p {
+            color: white;
+            margin-top: 10px;
+        }
+
+        .home {
+            padding: 80px 20px;
+        }
+
+        .home h2 {
+            font-size: 40px;
+            color: white;
+            text-shadow: 0 0 12px blue;
+        }
+
+        .home p {
+            margin-top: 15px;
+            font-size: 18px;
+            color: white;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 25px;
+            background: red;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        section {
+            padding: 45px 20px;
+            margin: 20px;
+            background: rgba(16, 27, 48, 0.90);
+            border: 2px solid #087bff;
+            border-radius: 12px;
+            color: white;
+        }
+
+        h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .games, .foods {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .game {
+            background: #172844;
+            padding: 20px;
+            border: 2px solid red;
+            border-radius: 10px;
+            width: 180px;
+            color: white;
+        }
+
+        .game h3, .game p {
+            color: white;
+        }
+
+        .game img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            display: block;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        #hobby h3 {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .hobby-img {
+            width: 250px;
+            height: 170px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid red;
+            margin: 15px;
+        }
+
+        .food {
+            background: #172844;
+            padding: 20px;
+            border: 2px solid red;
+            border-radius: 10px;
+            width: 200px;
+        }
+
+        .food img {
+            width: 100%;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        footer {
+            background: #101b30;
+            padding: 20px;
+            margin-top: 30px;
+            border-top: 3px solid red;
+            color: white;
+        }
+
+        footer p {
+            color: white;
+        }
+
+        /* MINI GAME ARCADE */
+
+        #minigame {
+            background: rgba(10, 20, 45, 0.95);
+        }
+
+        #minigame h2 {
+            color: #00aaff;
+            text-shadow: 0 0 12px blue;
+        }
+
+        .game-container {
+            max-width: 550px;
+            margin: auto;
+            padding: 20px;
+            background: #101b30;
+            border: 3px solid #087bff;
+            border-radius: 15px;
+        }
+
+        .game-info {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        #gameCanvas {
+            width: 100%;
+            max-width: 450px;
+            background: #080e20;
+            border: 2px solid #087bff;
+            border-radius: 10px;
+            display: block;
+            margin: auto;
+            touch-action: none;
+        }
+
+        .game-controls {
+            margin-top: 15px;
+        }
+
+        .game-controls button,
+        #startGame {
+            background: #087bff;
+            color: white;
+            border: none;
+            padding: 12px 22px;
+            margin: 5px;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 16px;
+            cursor: pointer;
+            touch-action: none;
+        }
+
+        .game-controls button:hover,
+        #startGame:hover {
+            background: red;
+        }
+
+        .game-message {
+            margin: 15px;
+            color: #00aaff;
+        }
+
+        /* MOBILE FRIENDLY */
+
+        @media (max-width: 600px) {
+
+            nav a {
+                margin: 8px;
+                font-size: 15px;
+            }
+
+            .gamer-banner {
+                height: 220px;
+            }
+
+            .banner-text h2 {
+                font-size: 25px;
+            }
+
+            .home h2 {
+                font-size: 28px;
+            }
+
+            .game {
+                width: 100%;
+                max-width: 250px;
+            }
+
+            section {
+                margin: 12px;
+                padding: 30px 12px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- VIDEO BACKGROUND -->
+
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="video.mp4" type="video/mp4">
+    </video>
+
+    <!-- HEADER -->
+
+    <header>
+        <h1>ANTONELLE</h1>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About Me</a>
+            <a href="#games">My Games</a>
+            <a href="#minigame">Mini Game</a>
+            <a href="#hobby">My Hobby</a>
+            <a href="#foods">Favorite Foods</a>
+        </nav>
+    </header>
+
+    <!-- GAMING BANNER -->
+
+    <div class="gamer-banner">
+        <img src="cat.jpg" alt="Gamer Setup">
+
+        <div class="banner-text">
+            <h2>ANTONELLE GAMING</h2>
+            <p>LEVEL UP • PLAY HARD • NEVER GIVE UP</p>
+        </div>
+    </div>
+
+    <!-- HOME -->
+
+    <div class="home" id="home">
+        <h2>WELCOME TO MY GAMING WORLD!</h2>
+
+        <p>
+            Hello! I'm Antonelle. Welcome to my personal webpage!
+        </p>
+
+        <a href="#about" class="button">Explore My Website</a>
+    </div>
+
+    <!-- ABOUT ME -->
+
+    <section id="about">
+        <h2>ABOUT ME</h2>
+
+        <p>
+            Hi! My name is Antonelle. I love playing online games
+            and enjoying sports during my free time.
+        </p>
+
+        <br>
+
+        <p><b>Favorite Colors:</b> Blue and Red</p>
+    </section>
+
+    <!-- MY GAMES -->
+
+    <section id="games">
+        <h2>MY FAVORITE GAMES</h2>
+
+        <div class="games">
+
+            <div class="game">
+                <img src="ml.jpg" alt="Mobile Legends">
+                <h3>Mobile Legends</h3>
+                <p>One of my favorite games!</p>
+            </div>
+
+            <div class="game">
+                <img src="ROBLOX.jpg" alt="Roblox">
+                <h3>Roblox</h3>
+                <p>I enjoy playing different games!</p>
+            </div>
+
+            <div class="game">
+                <img src="cod.jpg" alt="Call of Duty">
+                <h3>Call of Duty</h3>
+                <p>I love playing action games!</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- MINI GAME ARCADE -->
+
+    <section id="minigame">
+
+        <h2>🎮 MINI GAME ARCADE</h2>
+
+        <p>Catch the falling blocks and get the highest score!</p>
+
+        <br>
+
+        <div class="game-container">
+
+            <div class="game-info">
+                <span>Score: <span id="score">0</span></span>
+                <span>Missed: <span id="missed">0</span>/5</span>
+            </div>
+
+            <canvas id="gameCanvas" width="450" height="350"></canvas>
+
+            <p class="game-message" id="gameMessage">
+                Ready to play?
+            </p>
+
+            <button id="startGame" onclick="startGame()">
+                START GAME
+            </button>
+
+            <div class="game-controls">
+
+                <button
+                    onpointerdown="moveLeft=true"
+                    onpointerup="moveLeft=false"
+                    onpointerleave="moveLeft=false"
+                    onpointercancel="moveLeft=false">
+                    ◀ LEFT
+                </button>
+
+                <button
+                    onpointerdown="moveRight=true"
+                    onpointerup="moveRight=false"
+                    onpointerleave="moveRight=false"
+                    onpointercancel="moveRight=false">
+                    RIGHT ▶
+                </button>
+
+            </div>
+
+            <p>Computer: Use ← and → arrow keys.</p>
+            <p>Mobile: Hold the direction buttons.</p>
+
+        </div>
+
+    </section>
+
+    <!-- MY HOBBY -->
+
+    <section id="hobby">
+        <h2>MY HOBBY</h2>
+
+        <h3>BADMINTON 🏸</h3>
+
+        <img src="badminton.jpg"
+             alt="Badminton"
+             class="hobby-img">
+
+        <p>
+            Aside from playing games, I also enjoy playing badminton.
+            It is one of my favorite activities!
+        </p>
+    </section>
+
+    <!-- FAVORITE FOODS -->
+
+    <section id="foods">
+        <h2>MY FAVORITE FOODS</h2>
+
+        <div class="foods">
+
+            <div class="food">
+                <img src="friedchicken.jpg" alt="Fried Chicken">
+                <h3>Fried Chicken</h3>
+            </div>
+
+            <div class="food">
+                <img src="adobo.jpg" alt="Adobo">
+                <h3>Adobo</h3>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+        <p>Created by Antonelle | 2026</p>
+        <p>THANKS FOR VISITING MY WEBSITE!</p>
+    </footer>
+
+    <!-- MINI GAME JAVASCRIPT -->
+
+    <script>
+
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+
+        let score = 0;
+        let missed = 0;
+        let playing = false;
+        let moveLeft = false;
+        let moveRight = false;
+        let animation;
+        let blocks = [];
+        let blockTimer;
+
+        let basket = {
+            x: 185,
+            y: 310,
+            width: 80,
+            height: 20,
+            speed: 6
+        };
+
+        // DRAW BASKET
+
+        function drawBasket() {
+
+            ctx.fillStyle = "#087bff";
+
+            ctx.fillRect(
+                basket.x,
+                basket.y,
+                basket.width,
+                basket.height
+            );
+
+            ctx.fillStyle = "white";
+
+            ctx.fillRect(
+                basket.x + 10,
+                basket.y + 5,
+                basket.width - 20,
+                4
+            );
+        }
+
+        // CREATE FALLING BLOCKS
+
+        function createBlock() {
+
+            blocks.push({
+                x: Math.random() * (canvas.width - 20),
+                y: -20,
+                size: 20,
+                speed: 2 + Math.random() * 2
+            });
+
+        }
+
+        // DRAW BLOCKS
+
+        function drawBlocks() {
+
+            ctx.fillStyle = "#00aaff";
+
+            blocks.forEach(block => {
+
+                ctx.fillRect(
+                    block.x,
+                    block.y,
+                    block.size,
+                    block.size
+                );
+
+            });
+
+        }
+
+        // UPDATE GAME
+
+        function updateGame() {
+
+            if (!playing) return;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // MOVE BASKET
+
+            if (moveLeft && basket.x > 0) {
+                basket.x -= basket.speed;
+            }
+
+            if (moveRight && basket.x + basket.width < canvas.width) {
+                basket.x += basket.speed;
+            }
+
+            // MOVE BLOCKS
+
+            for (let i = blocks.length - 1; i >= 0; i--) {
+
+                let block = blocks[i];
+
+                block.y += block.speed;
+
+                // CATCH BLOCK
+
+                if (
+                    block.y + block.size >= basket.y &&
+                    block.x + block.size > basket.x &&
+                    block.x < basket.x + basket.width
+                ) {
+
+                    blocks.splice(i, 1);
+
+                    score++;
+
+                    document.getElementById("score").textContent = score;
+
+                    continue;
+                }
+
+                // MISSED BLOCK
+
+                if (block.y > canvas.height) {
+
+                    blocks.splice(i, 1);
+
+                    missed++;
+
+                    document.getElementById("missed").textContent = missed;
+
+                }
+
+            }
+
+            drawBlocks();
+            drawBasket();
+
+            // GAME OVER
+
+            if (missed >= 5) {
+
+                endGame();
+
+                return;
+            }
+
+            animation = requestAnimationFrame(updateGame);
+
+        }
+
+        // START OR RESTART GAME
+
+        function startGame() {
+
+            cancelAnimationFrame(animation);
+            clearInterval(blockTimer);
+
+            score = 0;
+            missed = 0;
+            blocks = [];
+
+            basket.x = 185;
+
+            moveLeft = false;
+            moveRight = false;
+
+            playing = true;
+
+            document.getElementById("score").textContent = 0;
+            document.getElementById("missed").textContent = 0;
+
+            document.getElementById("gameMessage").textContent =
+                "Catch as many blocks as you can!";
+
+            document.getElementById("startGame").textContent =
+                "RESTART GAME";
+
+            blockTimer = setInterval(createBlock, 900);
+
+            updateGame();
+
+        }
+
+        // END GAME
+
+        function endGame() {
+
+            playing = false;
+
+            moveLeft = false;
+            moveRight = false;
+
+            clearInterval(blockTimer);
+
+            document.getElementById("gameMessage").textContent =
+                "GAME OVER! Your final score: " + score;
+
+            document.getElementById("startGame").textContent =
+                "PLAY AGAIN";
+
+        }
+
+        // KEYBOARD CONTROLS
+
+        document.addEventListener("keydown", function(event) {
+
+            if (event.key === "ArrowLeft") {
+
+                moveLeft = true;
+                event.preventDefault();
+
+            }
+
+            if (event.key === "ArrowRight") {
+
+                moveRight = true;
+                event.preventDefault();
+
+            }
+
+        });
+
+        document.addEventListener("keyup", function(event) {
+
+            if (event.key === "ArrowLeft") {
+                moveLeft = false;
+            }
+
+            if (event.key === "ArrowRight") {
+                moveRight = false;
+            }
+
+        });
+
+        // STOP MOVEMENT WHEN TAB IS HIDDEN
+
+        document.addEventListener("visibilitychange", function() {
+
+            if (document.hidden) {
+
+                moveLeft = false;
+                moveRight = false;
+
+            }
+
+        });
+
+        // INITIAL GAME SCREEN
+
+        ctx.fillStyle = "#087bff";
+
+        ctx.fillRect(
+            basket.x,
+            basket.y,
+            basket.width,
+            basket.height
+        );
+
+    </script>
+
+</body>
+</html>
